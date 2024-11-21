@@ -3,6 +3,17 @@ from collections import deque
 user_input = input().split()
 queue = deque()
 
+def calculator(a:int, b:int, operator:str)-> int:
+    if operator == '+':
+        return a + b
+    elif operator == '-':
+        return a - b
+    elif operator == '*':
+        return a * b
+    elif operator == '/':
+        return a // b
+
+
 for c in user_input:
     if c not in '*+-/':
         queue.append(int(c))
@@ -10,12 +21,6 @@ for c in user_input:
         while len(queue) > 1:
             num1 = queue.popleft()
             num2 = queue.popleft()
-            if c == '+':
-                queue.appendleft(num1 + num2)
-            elif c == '-':
-                queue.appendleft(num1 - num2)
-            elif c == '*':
-                queue.appendleft(num1 * num2)
-            elif c == '/':
-                queue.appendleft(num1 // num2)
+            queue.appendleft(calculator(num1, num2, c))
+           
 print(queue.popleft())
